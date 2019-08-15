@@ -1,0 +1,1 @@
+return !global.isDiceRolled and !global.initialPhase

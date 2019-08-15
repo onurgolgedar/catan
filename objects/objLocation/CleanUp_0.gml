@@ -1,0 +1,3 @@
+ds_list_destroy(adjacentLands)
+ds_list_destroy(adjacentLocations)
+ds_list_destroy(structures)
