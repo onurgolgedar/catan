@@ -20,10 +20,13 @@ else {
 
 if (global.continueToggle) {
 	global.time += 1
-	global.turnTime += 1
+	global.gameStep_time += (global.gameStep_ready == global.gameStep)
+	global.sync_time += (global.gameStep_ready != global.gameStep)
 }
+
+global.totalTime = global.gameStep_time+global.sync_time
 	
-if (!global.stopGame and (global.turn > 1 and global.turnTime > 10*sec or global.turnTime > 30*sec)) {
+if (!global.stopGame and (global.gameStep > 1 and global.totalTime > 10*sec or global.totalTime > 30*sec)) {
 	show_message_async("Time out!")
 	
 	ini_open("games.ini")
@@ -35,8 +38,11 @@ if (!global.stopGame and (global.turn > 1 and global.turnTime > 10*sec or global
 		ini_write_string(experimentName, "Time(s)", global.time/60)
 		ini_write_string(experimentName, "Turn", global.turn)
 			
-		for (var i = 1; i <= PLAYER_COUNT; i++)
-			ini_write_string(experimentName, "NegotiationAgreements(P"+string(i)+")", global.negotiationAgreements[i])
+		for (var i = 1; i <= PLAYER_COUNT; i++) {
+			ini_write_string(experimentName, "P"+string(i)+".NegotiationAgreements", global.negotiationAgreements[i])
+			ini_write_string(experimentName, "P"+string(i)+".VictoryPoint(s)", global.playerScore[i])
+			ini_write_string(experimentName, "P"+string(i)+".TradeWithBank(s)", global.tradeBanks[i])
+		}
 	ini_close()
 		
 	game_restart()

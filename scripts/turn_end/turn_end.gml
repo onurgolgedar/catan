@@ -1,3 +1,6 @@
+if (!global.initialPhase and global.player_active == PLAYER_COUNT)
+	global.turn += 1
+
 if (global.initialPhase and structure_count(anyone, objSettlement) == PLAYER_COUNT*2) {
 	global.initialPhase = false
 }
@@ -25,7 +28,7 @@ global.isDiceRolled = false
 if (global.player_active != global.human and can_dice())
 	roll_dice(1+irandom(5), 1+irandom(5))
 
-global.turn += 1
+global.gameStep += 1
 
 ini_open("communication.ini")
 	ini_write_string("Game State", "isInitial", global.initialPhase ? "true" : "false")

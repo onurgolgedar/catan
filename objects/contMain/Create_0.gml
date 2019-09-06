@@ -1,11 +1,12 @@
 randomize()
 
 global.initialPhase = true
-global.turn_ready = 1
-global.turn = 1
+global.gameStep_ready = 1
+global.gameStep_time = 0
+global.gameStep = 1
 global.player_active = 1
 global.time = 0
-global.turnTime = 0
+global.turn = 0
 
 global.isDiceRolled = false
 global.dice[0] = 0
@@ -40,16 +41,13 @@ for (var i = 1; i <= PLAYER_COUNT; i++) {
 	global.totalCards[i] = 0
 	
 	global.negotiationAgreements[i] = 0
+	global.tradeBanks[i] = 0
 }
 
 global.longestRoad_owner = -1
-global.longestRoad_value = 0
 global.oldLongestRoad_owner = -1
-global.oldLongestRoad_value = -1
 global.knights_owner = -1
-global.knights_value = 0
 global.oldKnights_owner = -1
-global.oldKnights_value = -1
 
 #region CREATE BOARD
 var landCount_vertical = 7

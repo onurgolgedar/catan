@@ -1,6 +1,6 @@
 /// @desc Sync Garuntuer
 
-if (global.turn_ready == global.turn and global.turn > 1)
+if (global.gameStep_ready == global.gameStep and global.gameStep > 1)
 	exit
 
 var areAllSync = true
@@ -25,7 +25,8 @@ ini_open("communication.ini")
 ini_close()
 
 if (areAllSync and !global.stopGame) {
-	global.turn_ready = global.turn
+	global.gameStep_ready = global.gameStep
+	global.sync_time = 0
 	
 	// ?
 	//recalculate_scores()

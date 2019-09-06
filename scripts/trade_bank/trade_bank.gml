@@ -44,5 +44,7 @@ if (totalTaken == totalGiven/4) {
 	
 	action_trade_write(playerIndex, givenGrain, givenLumber, givenWool, givenOre, givenBrick, takenGrain, takenLumber, takenWool, takenOre, takenBrick, actionObject_bank)
 	
+	global.tradeBanks[playerIndex] += 1
+	
 	return true
 }

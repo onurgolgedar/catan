@@ -1,1 +1,1 @@
-return (global.turn == global.turn_ready)
+return (global.gameStep == global.gameStep_ready)

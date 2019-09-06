@@ -37,13 +37,13 @@ if (global.continueToggle) {
 	draw_set_valign(fa_top) draw_set_halign(fa_left) draw_set_font(fontMain) draw_set_color(c_black)
 }
 
-if (global.stopGame or global.turn_ready != global.turn) {
+if (global.stopGame or global.gameStep_ready == global.gameStep and global.gameStep != 1) {
 	var text
 
 	if (global.stopGame)
 		text = "The winner is "+global.player_name[global.winnerPlayer]
 	else
-		text = global.player_name[global.player_active]+" is thinking."
+		text = global.player_name[global.player_active]+" is thinking. ("+string(global.gameStep_time/60)+"s)"
 	
 	if (global.stopGame) {
 		draw_set_alpha(0.15) draw_set_color(get_player_color(global.winnerPlayer))
@@ -52,7 +52,7 @@ if (global.stopGame or global.turn_ready != global.turn) {
 	}
 
 	draw_set_valign(fa_center) draw_set_halign(fa_center) draw_set_font(fontMain_large) draw_set_alpha(0.8)
-		draw_roundrect(dw/2-190, 120-17, dw/2+190, 120+17, 0)
+		draw_roundrect(dw/2-200, 120-17, dw/2+200, 120+17, 0)
 	draw_set_color(c_white) draw_set_alpha(1)
 		draw_text(dw/2, 122, text)
 	draw_set_valign(fa_top) draw_set_halign(fa_left) draw_set_font(fontMain)
@@ -68,7 +68,7 @@ if (global.stopGame or global.turn_ready != global.turn) {
 		var xx = dw/PLAYER_COUNT*(i-1)
 		var xx2 = dw/PLAYER_COUNT*i
 		
-		if (global.player_active == i) {
+		if (global.player_active == i and global.gameStep_ready == global.gameStep) {
 			draw_set_color(c_green) draw_set_alpha(0.2+contMain.period/20)
 				draw_rectangle(xx, 0, xx2, 100, 0)
 			draw_set_color(c_default) draw_set_alpha(1)

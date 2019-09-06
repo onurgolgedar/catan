@@ -117,8 +117,6 @@ if (moveDone) {
 	ini_close()
 		
 	recalculate_scores()
-	
-	global.turnTime = 0
 		
 	if (!global.stopGame)
 		turn_end()
@@ -139,7 +137,10 @@ if (moveDone) {
 			for (var i = 1; i <= PLAYER_COUNT; i++) {
 				ini_write_string(experimentName, "P"+string(i)+".NegotiationAgreements", global.negotiationAgreements[i])
 				ini_write_string(experimentName, "P"+string(i)+".VictoryPoint(s)", global.playerScore[i])
+				ini_write_string(experimentName, "P"+string(i)+".TradeWithBank(s)", global.tradeBanks[i])
 			}
 		ini_close()
 	}
+	
+	global.gameStep_time = 0
 }
